@@ -13,23 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+//All Frontend Route
 
 
 Route::get('/','Frontend\FrontendController@index');
-
-
-Route::prefix('frontend')->name('category')->group(function(){
-
-    
-
-                                  });
-
+Route::get('category','Frontend\FrontendController@category');
+Route::get('category/{slug}','Frontend\FrontendController@view_category');
+Route::get('category/{cate_slug}/{prod_slug}','Frontend\FrontendController@view_product');
+Route::post('/add-to-cart','Frontend\CartController@addProduct');
+                                
+Route::middleware('auth')->group(function() {
+    Route::get('/cart','Frontend\CartController@viewCart')->name('cart');
+    Route::post('/delete-cart-item','Frontend\CartController@deleteCartItem');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
+// All Admin Panel Route
 
 Route::middleware(['auth','isAdmin'])->group(function () {
 

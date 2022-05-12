@@ -19,6 +19,12 @@
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.theme.default.min.css')}}">
+   <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">    
+   <!-- font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
 
 
 </head>
@@ -36,11 +42,15 @@
 
 
 
-
-  <!--   Core JS Files   -->
+  <!--   Custome JS Files   -->
+  <script src="{{asset('js/custom.js')}}"></script>
+  <!--   Bootstrap JS Files   -->
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>  
+  <!--   owl JS Files   -->
   <script src="{{asset('frontend/owl/owl.carousel.min.js')}}"></script>
+  <!--   Sweet alert JS Files   -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
   @if(session('status'))
         <script>
          swal("{{ session('status') }}");

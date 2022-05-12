@@ -16,9 +16,13 @@
                   </select>
             </div>      
                       
-            <div class="col-md-12 mb-3">
+            <div class="col-md-6 mb-3">
                   <label for="">Name</label>
                   <input type="text" class="form-control" name="name" value="{{$val->name}}">
+            </div>            
+            <div class="col-md-6 mb-3">
+                  <label for="">Slug</label>
+                  <input type="text" class="form-control" name="slug" value="{{$val->slug}}">
             </div>            
 
             <div class="col-md-12 mb-3">
