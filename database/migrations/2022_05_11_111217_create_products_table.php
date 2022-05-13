@@ -20,8 +20,8 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->mediumText('small_description');
             $table->longText('description');
-            $table->string('original_price');
-            $table->string('selling_price');
+            $table->int('original_price');
+            $table->int('selling_price');
             $table->string('image')->default(null);
             $table->string('qty');
             $table->string('tax');

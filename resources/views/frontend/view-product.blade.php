@@ -35,7 +35,7 @@
                               @if($product->qty>0)
                                     <label class="badge bg-success">In stock</label>
                               @else       
-                                    <label class="badge bg-danger">In stock</label> 
+                                    <label class="badge bg-danger">Out of stock</label> 
                               @endif
                               <div class="row mt-2">
                                      <div class="col-md-3">
@@ -49,8 +49,13 @@
                                     </div> 
                                     <div class="col-md-9">
                                           <br/>
-                                          <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>      
-                                          <button type="button" class="btn btn-primary me-3 float-start  addToCartBtn">Add to Cart <i class="fa fa-shopping-cart"></i></button>      
+                                          @if($product->qty>0)
+                                          <button type="button" class="btn btn-primary me-3 float-start  addToCartBtn">Add to Cart <i class="fa fa-shopping-cart"></i></button>                                          
+                                          @else       
+                                          <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
+                                          @endif
+                                           
+                                                
                                     </div>     
                               </div>      
                         </div>

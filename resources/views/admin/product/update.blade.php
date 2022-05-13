@@ -36,11 +36,11 @@
             
             <div class="col-md-6 mb-3">
                   <label for="">Original Price</label>
-                  <input type="text" name="original_price" class="form-control" value="{{$val->original_price}}">
+                  <input type="number" name="original_price" class="form-control" value="{{$val->original_price}}">
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Selling Price</label>
-                  <input type="text" name="selling_price" class="form-control" value="{{$val->selling_price}}">
+                  <input type="number" name="selling_price" class="form-control" value="{{$val->selling_price}}">
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Quantity</label>

@@ -9,7 +9,7 @@ My Cart
 
 <div class="py-3 mb-4 shadow-sm bg-warning border-top">
       <div class="container">
-            <h6 class="mb-0">Cart</h6>      
+            <h6 class="mb-0">Your Shopping Cart</h6>      
       </div>       
 </div>  
 
@@ -18,30 +18,45 @@ My Cart
 <div class="container my-5">
       <div class="card shadow">
             <div class="card-body">
+                  @php $total=0; @endphp
                   @foreach ($product as $item)
                   <div class="row product_data">
      
-                        <div class="col-md-2">
+                        <div class="col-md-2 my-auto">
                               <img src="{{asset('assets/uploads/product/'.$item->product->image)}}" height="70px" width="70px" alt="Image">
                         </div>
-                        <div class="col-md-5">
-                             {{$item->product->name}}
+                        <div class="col-md-3 my-auto">
+                            <h6>{{$item->product->name}}</h6>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2 my-auto">
+                            <h6>Rs {{$item->product->selling_price}}</h6>
+                        </div>
+                        <div class="col-md-3 my-auto">
                               <input type="hidden" value="{{$item->id}}" class="cart_id">
+                              @if($item->product->qty > $item->prod_qty)
                               <label for="quantity">Quantity</label>
                               <div class="input-group text-center mb-3" style="width:130px;">
-                                     <button class="input-group-text decrement-btn">-</button>
+                                     <button class="input-group-text changeQuantity decrement-btn">-</button>
                                      <input type="text" name="quantity" value="{{$item->prod_qty}}" class="form-control qty-input text-center" />
-                                     <button class="input-group-text increment-btn">+</button>      
-                              </div>       
+                                     <button class="input-group-text changeQuantity increment-btn">+</button>      
+                              </div>  
+                              @php $total+=($item->product->selling_price)*($item->prod_qty); @endphp
+                              @else
+                                  <h6>Out of Stock</h6>
+                              @endif
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 my-auto">
                               <button class="btn btn-danger delete-cart-item"><i class="fa fa-trash"></i>Remove</button>
                         </div>
                          
                   </div>
+                 
+                  
                   @endforeach
+            </div>
+            <div class="card-footer">
+                  <h6>Total Price : Rs <span class="total">{{$total}}</span></h6>
+                  <a href="{{url('/checkout')}}" class="btn btn-outline-success float-end">Proceed to Checkout</a>
             </div>
       </div>
 </div>
