@@ -98,7 +98,15 @@ $(document).ready(function(){
                               'prod_qty':qty,
                         },
                         success:function(response) {
-                        $('.total').html(response.status);
+                        if(response.status=='out_of_stock')
+                        {
+                              swal("Out of stock.Increment Failed");
+                        }
+                        else 
+                        {
+                              $('.total').html(response.status);
+                        }
+                        
                         //console.log(response.status);
                         }
                   });

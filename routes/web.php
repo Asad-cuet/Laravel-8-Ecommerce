@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/delete-cart-item','Frontend\CartController@deleteCartItem');
     Route::post('/update-cart','Frontend\CartController@updateCart');
     Route::get('/checkout','Frontend\CheckoutController@index');
+    Route::post('/place-order','Frontend\CheckoutController@placeOrder');
 });
 
 Auth::routes();

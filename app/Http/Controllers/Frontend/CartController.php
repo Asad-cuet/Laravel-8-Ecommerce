@@ -65,16 +65,24 @@ class CartController extends Controller
         if(Cart::where('id',$cart_id)->exists())
         {
             $cart=Cart::where('id',$cart_id)->first();
-            $cart->prod_qty=$prod_qty;
-            $cart->update();
- 
-            $cart2=Cart::where('user_id',Auth::id())->get();
-            $total=0;
-            foreach($cart2 as $item)
+            if(($cart->product->qty) >= ($prod_qty))
             {
-                 $total+=($item->product->selling_price)*($item->prod_qty);
-            } 
-            return response()->json(['status'=>$total]);
+                $cart->prod_qty=$prod_qty;
+                $cart->update();
+     
+                $cart2=Cart::where('user_id',Auth::id())->get();
+                $total=0;
+                foreach($cart2 as $item)
+                {
+                     $total+=($item->product->selling_price)*($item->prod_qty);
+                } 
+                return response()->json(['status'=>$total]);
+            }
+            else
+            {
+                return response()->json(['status'=>'out_of_stock']);
+            }
+
         }
     }
 
