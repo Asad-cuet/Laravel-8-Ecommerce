@@ -42,6 +42,7 @@
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                     <a href="{{ url('/home') }}" class="dropdown-item">Home</a>
+                    <a href="{{ url('/my-orders') }}" class="dropdown-item">My Orders</a>
 
 
                     <a class="dropdown-item" href="{{ route('logout') }}"

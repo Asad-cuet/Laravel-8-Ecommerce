@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/update-cart','Frontend\CartController@updateCart');
     Route::get('/checkout','Frontend\CheckoutController@index');
     Route::post('/place-order','Frontend\CheckoutController@placeOrder');
+    Route::get('/my-orders','Frontend\UserController@index');
+    Route::get('/view-order/{order_id}','Frontend\UserController@view_order');
 });
 
 Auth::routes();

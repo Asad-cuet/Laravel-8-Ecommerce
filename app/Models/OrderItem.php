@@ -12,4 +12,9 @@ class OrderItem extends Model
     protected $table='order_items';
     protected $fillable=['order_id','prod_id','price','qty'];
 
+
+    public function product()  //making relationship
+    {
+         return $this->belongsTo(Product::class,'prod_id','id');
+    }    
 }
