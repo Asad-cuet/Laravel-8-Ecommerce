@@ -100,6 +100,9 @@ $(document).ready(function(){
                         success:function(response) {
                         if(response.status=='out_of_stock')
                         {
+                              var val=$('.qty-input').val();
+                              val--;
+                              $('.qty-input').val(val);
                               swal("Out of stock.Increment Failed");
                         }
                         else 
