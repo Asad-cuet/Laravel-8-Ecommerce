@@ -16,13 +16,17 @@ class CheckoutController extends Controller
     public function index()
     {
         $old_cartitems=Cart::where('user_id',Auth::id())->get();
+
+        
         
         foreach($old_cartitems as $item)
         {
+           
             if(Product::where('id',$item->prod_id)->where('qty','<',$item->prod_qty)->exists())
             {
-             //   $p=Product::where('id',$item->prod_id)->where('qty','<',$item->prod_qty)->first();
-           //    dd($p->qty);
+                // $p=Product::where('id',$item->prod_id)->where('qty','<',$item->prod_qty)->first();
+                // dd('id='.$p->id.' qty='.$p->qty.' ordered q='.$item->prod_qty);
+
                 $removeItem=Cart::where('user_id',Auth::id())->where('prod_id',$item->prod_id)->first();
                 $removeItem->delete();
             }
@@ -40,7 +44,17 @@ class CheckoutController extends Controller
             return redirect('/')->with('status','Add Product to Cart first!');
          }
         
-        
+
+         $cartitems=Cart::where('user_id',Auth::id())->get();
+         $total_price=0;
+         foreach($cartitems as $item)
+         {
+             $total_price+=($item->product->selling_price) * ($item->prod_qty);
+
+         }     
+         
+
+
          $order=new Order();
          $order->user_id = Auth::id();
          $order->fname = $request->input('fname');
@@ -53,10 +67,11 @@ class CheckoutController extends Controller
          $order->state = $request->input('state');
          $order->country = $request->input('country');
          $order->pincode = $request->input('pincode');
+         $order->total_price = $total_price;
          $order->tracking_no = 'asad'.rand(1111,9999);
          $order->save();
 
-         $cartitems=Cart::where('user_id',Auth::id())->get();
+        
          foreach($cartitems as $item)
          {
              OrderItem::create([

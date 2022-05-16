@@ -26,8 +26,8 @@
                                     <label style="font-size:16px;" class="float-end badge bg-danger trending_tag">{{$product->trending==1 ? 'Trending':''}}</label>
                               </h2>
                               <hr>
-                              <label class="me-3">Original Price: <s>Rs 1200</s></label>
-                              <label class="fw-bold">Selling Price: Rs 1200</label>
+                              <label class="me-3">Original Price: <s>Rs {{$product->original_price}}</s></label>
+                              <label class="fw-bold">Selling Price: Rs {{$product->selling_price}}</label>
                               <p class="mt-3">
                                     {{$product->small_description}}     
                               </p>

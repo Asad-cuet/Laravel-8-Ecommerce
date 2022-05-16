@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->int('original_price');
             $table->int('selling_price');
             $table->string('image')->default(null);
-            $table->string('qty');
+            $table->integer('qty');
             $table->string('tax');
             $table->tinyInteger('status');
             $table->tinyInteger('trending');

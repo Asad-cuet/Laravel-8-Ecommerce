@@ -18,7 +18,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link {{Request::is('cart') ? 'active':'' }}" href="{{url('/cart')}}">Cart</a>
+              <a class="nav-link {{Request::is('cart') ? 'active':'' }}" href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
             </li>
             
         @guest

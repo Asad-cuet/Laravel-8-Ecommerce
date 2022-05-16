@@ -44,11 +44,11 @@
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Quantity</label>
-                  <input type="text" name="qty" class="form-control" value="{{$val->qty}}">
+                  <input type="number" name="qty" class="form-control" value="{{$val->qty}}">
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Tax</label>
-                  <input type="text" name="tax" class="form-control" value="{{$val->tax}}">
+                  <input type="number" name="tax" class="form-control" value="{{$val->tax}}">
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Status</label>
