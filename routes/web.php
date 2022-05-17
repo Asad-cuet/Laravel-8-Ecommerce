@@ -62,4 +62,10 @@ Route::middleware(['auth','isAdmin'])->group(function () {
          Route::post('update/{id}','Admin\ProductController@update')->name('.update'); 
          Route::get('delete/{id}','Admin\ProductController@delete')->name('.delete'); 
                                       });
+
+
+        Route::get('/orders','Admin\OrderController@index');  
+        Route::get('/admin/view-order/{order_id}','Admin\OrderController@view_order');                               
+        Route::put('/update-order/{order_id}','Admin\OrderController@update_order');                               
+        Route::get('/order-history','Admin\OrderController@order_history');                               
   });
