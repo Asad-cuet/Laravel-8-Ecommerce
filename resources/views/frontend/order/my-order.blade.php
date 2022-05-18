@@ -7,15 +7,16 @@
 
 @section('content')
 
-<div class="container">
+<div class="container py-5">
       
-      <div class="row">
+      <div class="row mt">
             <div class="col-md-12">
                   <div class="card">
                         <div class="card-header">
                            <h4>My Orders</h4>
                         </div>
                         <div class="card-body">
+                              <div style="overflow-x: auto">
                                     <table class="table table-bordered">
                                           <thead>
                                                 <tr>
@@ -38,6 +39,7 @@
                                                 @endforeach
                                           </tbody>
                                     </table>
+                              </div>    
                         </div>
                   </div>
 

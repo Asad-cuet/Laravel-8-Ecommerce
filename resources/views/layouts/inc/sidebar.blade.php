@@ -42,6 +42,13 @@
             </a>
           </li>
 
+          <li class="nav-item {{Request::is('users') ? 'active':'' }}">
+            <a class="nav-link" href="{{url('/users')}}">
+              <i class="material-icons">person</i>
+              <p>All Users</p>
+            </a>
+          </li>
+
 
           <li class="nav-item ">
             <a class="nav-link" href="./notifications.html">

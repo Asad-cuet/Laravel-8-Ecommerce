@@ -51,8 +51,9 @@
                                           <br/>
                                           @if($product->qty>0)
                                           <button type="button" class="btn btn-primary me-3 float-start  addToCartBtn">Add to Cart <i class="fa fa-shopping-cart"></i></button>                                          
+                                          <button type="button" class="btn btn-success addToWishlist me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
                                           @else       
-                                          <button type="button" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
+                                          <button type="button" class="btn btn-success addToWishlist me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
                                           @endif
                                            
                                                 

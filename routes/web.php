@@ -30,6 +30,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/place-order','Frontend\CheckoutController@placeOrder');
     Route::get('/my-orders','Frontend\UserController@index');
     Route::get('/view-order/{order_id}','Frontend\UserController@view_order');
+    Route::get('/wishlist','Frontend\WishlistController@index');
+    Route::post('/add-to-wishlist','Frontend\WishlistController@add_to_wishlist');
+    Route::post('/delete-wishlist-item','Frontend\WishlistController@delete_wishlist_item');
 });
 
 Auth::routes();
@@ -67,5 +70,7 @@ Route::middleware(['auth','isAdmin'])->group(function () {
         Route::get('/orders','Admin\OrderController@index');  
         Route::get('/admin/view-order/{order_id}','Admin\OrderController@view_order');                               
         Route::put('/update-order/{order_id}','Admin\OrderController@update_order');                               
-        Route::get('/order-history','Admin\OrderController@order_history');                               
+        Route::get('/order-history','Admin\OrderController@order_history');    
+        Route::get('/users','Admin\UserController@index');
+        Route::get('/view-user/{user_id}','Admin\UserController@view_user');                           
   });

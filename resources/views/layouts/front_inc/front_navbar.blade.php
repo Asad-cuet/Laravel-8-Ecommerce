@@ -20,6 +20,11 @@
             <li class="nav-item">
               <a class="nav-link {{Request::is('cart') ? 'active':'' }}" href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
             </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link {{Request::is('wishlist') ? 'active':'' }}" href="{{url('/wishlist')}}"><i class="fa fa-wish-list"></i> Wishlist</a>
+            </li>
             
         @guest
             @if (Route::has('login'))
@@ -43,6 +48,7 @@
 
                     <a href="{{ url('/home') }}" class="dropdown-item">Home</a>
                     <a href="{{ url('/my-orders') }}" class="dropdown-item">My Orders</a>
+                    
 
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
