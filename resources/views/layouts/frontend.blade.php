@@ -44,6 +44,8 @@
 
   <!--   Custome JS Files   -->
   <script src="{{asset('js/custom.js')}}"></script>
+    <!--   Checkout JS Files   -->
+  <script src="{{asset('js/checkout.js')}}"></script>
   <!--   Bootstrap JS Files   -->
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js')}}"></script>  
   <!--   owl JS Files   -->

@@ -19,43 +19,53 @@ Checkout Page
                               <div class="row checkout-form">
                                     <div class="col-md-6">
                                           <label for="">First Name</label>
-                                          <input required type="text" name="fname" value="{{Auth::user()->fname}}" class="form-control" placeholder="Enter First Name">
+                                          <input required type="text" name="fname" value="{{Auth::user()->fname}}" class="form-control fname" placeholder="Enter First Name">
+                                          <span id="fname_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6">
                                           <label for="">Last Name</label>
-                                          <input required type="text" name="lname" value="{{Auth::user()->lname}}" class="form-control" placeholder="Enter Last Name">
+                                          <input required type="text" name="lname" value="{{Auth::user()->lname}}" class="form-control lname" placeholder="Enter Last Name">
+                                          <span id="lname_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Email</label>
-                                          <input required type="email" name="email" value="{{Auth::user()->email}}" class="form-control" placeholder="Enter Email">
+                                          <input required type="email" name="email" value="{{Auth::user()->email}}" class="form-control email" placeholder="Enter Email">
+                                          <span id="email_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Phone number</label>
-                                          <input required type="text" name="phone" value="{{Auth::user()->phone}}" class="form-control" placeholder="Enter Phone Number">
+                                          <input required type="text" name="phone" value="{{Auth::user()->phone}}" class="form-control phone" placeholder="Enter Phone Number">
+                                          <span id="phone_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Address 1</label>
-                                          <input required type="text" name="address1" value="{{Auth::user()->address1}}" class="form-control" placeholder="Enter Address 1">
+                                          <input required type="text" name="address1" value="{{Auth::user()->address1}}" class="form-control address1" placeholder="Enter Address 1">
+                                          <span id="address1_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Address 2</label>
-                                          <input type="text" name="address2" value="{{Auth::user()->address2}}" class="form-control" placeholder="Enter Address 2">
+                                          <input type="text" name="address2" value="{{Auth::user()->address2}}" class="form-control address2" placeholder="Enter Address 2">
+                                          
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">City</label>
-                                          <input required type="text" name="city" value="{{Auth::user()->city}}" class="form-control" placeholder="Enter City">
+                                          <input required type="text" name="city" value="{{Auth::user()->city}}" class="form-control city" placeholder="Enter City">
+                                          <span id="city_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">State</label>
-                                          <input required type="text" name="state" value="{{Auth::user()->state}}" class="form-control" placeholder="Enter State">
+                                          <input required type="text" name="state" value="{{Auth::user()->state}}" class="form-control state" placeholder="Enter State">
+                                          <span id="state_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Country</label>
-                                          <input required type="text" name="country" value="{{Auth::user()->country}}" class="form-control" placeholder="Enter Country">
+                                          <input required type="text" name="country" value="{{Auth::user()->country}}" class="form-control country" placeholder="Enter Country">
+                                          <span id="country_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                           <label for="">Pin Code</label>
-                                          <input required type="password" name="pincode" value="{{Auth::user()->pincode}}" class="form-control" placeholder="Enter Pin Code">
+                                          <input required type="password" name="pincode" value="{{Auth::user()->pincode}}" class="form-control pincode" placeholder="Enter Pin Code">
+                                          <span id="pincode_error" class="text-danger"></span>
                                     </div>
                               </div>
                         </div>
@@ -64,6 +74,7 @@ Checkout Page
             <div class="col-md-7">
                   <div class="card">
                         <div class="card-body">
+                              @if($cartitems->count()>0)
                               Order Details
                               <hr>
                               <table class="table table-striped table-bordered">
@@ -88,7 +99,13 @@ Checkout Page
                               </table>
                               <h6>Total : Rs {{$total}}</h6>
                               <hr>
-                              <button type="submit " class="btn btn-primary w-100">Place Order</button>
+                              <input type="hidden" name="payment_mode" value="COD">
+                              <button type="submit" class="btn btn-success w-100">Place Order | COD</button>
+                              <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn">Pay with Razorpay</button>
+                              @else
+                                  <h4 class="text-center">No products in Cart</h4>
+
+                              @endif
                         </div>
                   </div>
             </div>
@@ -98,5 +115,5 @@ Checkout Page
 @endsection
 
 @section('scripts')
- 
-@endsection
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ @endsection

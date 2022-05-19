@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/wishlist','Frontend\WishlistController@index');
     Route::post('/add-to-wishlist','Frontend\WishlistController@add_to_wishlist');
     Route::post('/delete-wishlist-item','Frontend\WishlistController@delete_wishlist_item');
+    Route::post('/proceed-to-pay','Frontend\CheckoutController@razorpay_Check');
 });
 
 Auth::routes();

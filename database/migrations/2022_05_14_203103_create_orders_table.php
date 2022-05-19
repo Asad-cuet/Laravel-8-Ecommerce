@@ -27,6 +27,8 @@ class CreateOrdersTable extends Migration
             $table->string('country');
             $table->string('pincode');
             $table->longInteger('total_price')->default(null);
+            $table->string('payment_mode')->default(null);
+            $table->string('payment_id')->default(null);
             $table->tinyInteger('status')->default('0');
             $table->string('message')->default(null);
             $table->string('tracking_no');  //randomely
