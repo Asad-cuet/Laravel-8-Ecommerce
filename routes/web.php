@@ -21,6 +21,7 @@ Route::get('category','Frontend\FrontendController@category');
 Route::get('category/{slug}','Frontend\FrontendController@view_category');
 Route::get('category/{cate_slug}/{prod_slug}','Frontend\FrontendController@view_product');
 Route::post('/add-to-cart','Frontend\CartController@addProduct');
+Route::get('/load-cart-data','Frontend\CartController@load_cart_data');
                                 
 Route::middleware('auth')->group(function() {
     Route::get('/cart','Frontend\CartController@viewCart')->name('cart');

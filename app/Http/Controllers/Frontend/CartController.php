@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Wishlist;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,6 +85,18 @@ class CartController extends Controller
             }
 
         }
+    }
+
+
+    public function load_cart_data()
+    {
+        if(Auth::check())
+        {
+            $cartcount=Cart::where('user_id',Auth::id())->count();
+            $wishcount=Wishlist::where('user_id',Auth::id())->count();
+            return response()->json(['cartcount'=>$cartcount,'wishcount'=>$wishcount]);
+        }
+
     }
 
 

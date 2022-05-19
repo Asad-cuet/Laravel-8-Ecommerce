@@ -7,6 +7,23 @@ $(document).ready(function(){
             }
          });
 
+
+         function loadcart()
+         {
+               $.ajax({
+                    method:"GET",
+                    url:"/load-cart-data",
+                    success:function(response)
+                    {
+                         //alert(response.count);
+                         //$('.cart-count').html(''); 
+                         $('.cart-count').html(response.cartcount); 
+                         $('.wish-count').html(response.wishcount); 
+                    }
+               });
+         }
+         loadcart();
+
             $('.addToCartBtn').click(function(e){
                e.preventDefault();
                var product_id=$(this).closest('.product_data').find('.prod_id').val();
@@ -24,7 +41,7 @@ $(document).ready(function(){
                      success:function(response,res) {
                           //alert(res);
                           swal(response.status);
-                          
+                          loadcart();
                           
                      }
                });
@@ -44,7 +61,8 @@ $(document).ready(function(){
                      data:{
                            'prod_id':product_id                     },
                      success:function(response) {
-                          swal(response.status);  
+                          swal(response.status); 
+                          loadcart(); 
                      }
                });
             });
@@ -95,6 +113,7 @@ $(document).ready(function(){
                         },
                         success:function(response) {
                         swal("",response.status, "success");
+                        loadcart();
                         }
                   });
 
@@ -118,6 +137,7 @@ $(document).ready(function(){
                         },
                         success:function(response) {
                         swal("",response.status, "success");
+                        loadcart();
                         }
                   });
 

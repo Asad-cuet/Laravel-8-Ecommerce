@@ -15,17 +15,25 @@
             <li class="nav-item">
               <a class="nav-link {{Request::is('category') ? 'active':'' }}" href="{{url('/category')}}">Category</a>
             </li>
-
-
+            
+            
+            @if (Auth::user())
             <li class="nav-item">
-              <a class="nav-link {{Request::is('cart') ? 'active':'' }}" href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a>
-            </li>
-
-
-            <li class="nav-item">
-              <a class="nav-link {{Request::is('wishlist') ? 'active':'' }}" href="{{url('/wishlist')}}"><i class="fa fa-wish-list"></i> Wishlist</a>
+              <a class="nav-link {{Request::is('cart') ? 'active':'' }}" href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart
+              <span class="badge badge-pill bg-primary cart-count">0</span>
+              </a>
             </li>
             
+
+            <li class="nav-item">
+              <a class="nav-link {{Request::is('wishlist') ? 'active':'' }}" href="{{url('/wishlist')}}"><i class="fa fa-wish-list"></i> Wishlist
+                <span class="badge badge-pill bg-success wish-count">0</span>
+              </a>
+            </li>
+            @endif
+       
+
+
         @guest
             @if (Route::has('login'))
                 <li class="nav-item">
