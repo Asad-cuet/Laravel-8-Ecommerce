@@ -18,7 +18,7 @@ Orders
                                     <a href="{{url('/order-history')}}" class="btn btn-warning text-white float-right">Order History</a>
                                     @elseif($status==1)
                                     Order History
-                                    <a href="{{url('/orders')}}" class="btn btn-warning text-white float-right">New Orders</a>
+                                    <a href="{{url('/orders')}}" class="btn btn-primary text-white float-right">New Orders</a>
                                     @endif
                               </h4>
                         </div>
@@ -29,6 +29,7 @@ Orders
                                                 <th>Order Date</th>
                                                 <th>Tracking Number</th>
                                                 <th>Total Price</th>
+                                                <th>Payment Mode</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                           </tr>
@@ -39,6 +40,7 @@ Orders
                                                     <td>{{date('d-m-Y',strtotime($item->created_at))}}</td>
                                                     <td>{{$item->tracking_no}}</td>
                                                     <td>{{$item->total_price}}</td>
+                                                    <td>{{$item->payment_mode}}</td>
                                                     <td>{{$item->status==0 ? 'Pending':'Completed'}}</td>
                                                     <td>
                                                           <a href="{{url('/admin/view-order/'.$item->id)}}" class="btn btn-primary">View</a>

@@ -63,7 +63,8 @@
                                                 </tbody>
                                           </table>
                                           </div>
-                                          <h4 class="px-2">Grand Total:<span class="float-end">Rs {{$order->total_price}}</span></h4>
+                                          <h4 class="px-2">Grand Total:<span class="float-end">$ {{$order->total_price}}</span></h4>
+                                          <h6 class="px-2"><span class="float-end"> {{$order->payment_mode=='COD' ? 'Cash On Delivery':$order->payment_mode}}</span></h6>
                                     </div>
                               </div>
 

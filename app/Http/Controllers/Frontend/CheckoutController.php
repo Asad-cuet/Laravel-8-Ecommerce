@@ -111,7 +111,7 @@ class CheckoutController extends Controller
 
 
 
-         if($request->input('payment_mode')=="Paid by Razorpay")
+         if($request->input('payment_mode')=="Paid by Razorpay" || $request->input('payment_mode')=="Paid by Paypal")
          {
              return response()->json(['status'=>'Order Placed Successfully']);
          }

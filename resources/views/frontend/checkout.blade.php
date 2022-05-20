@@ -99,9 +99,16 @@ Checkout Page
                               </table>
                               <h6>Total : Rs {{$total}}</h6>
                               <hr>
+                              <input type="hidden" class="total" value="{{$total}}">
                               <input type="hidden" name="payment_mode" value="COD">
-                              <button type="submit" class="btn btn-success w-100">Place Order | COD</button>
+                              <button type="submit" class="btn btn-success w-100">Place Order | Cash On Delivery</button>
                               <button type="button" class="btn btn-primary w-100 mt-3 razorpay_btn">Pay with Razorpay</button>
+                              <!-- paypal button -->
+                              <div class="mt-3">
+                                    <div id="paypal-button-container"></div>
+                              </div>
+                              
+
                               @else
                                   <h4 class="text-center">No products in Cart</h4>
 
@@ -115,5 +122,9 @@ Checkout Page
 @endsection
 
 @section('scripts')
+<!-- paypal script -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQHZPWmsg8QTiAx6bgfd6QXE-PSxVJKJy4Y70K91GMbKlTm2IgLpffo0gYtUnuSLy7iDLWzF_GBRZC_6&currency=USD"></script>
+<script src="js/paypal.js"></script>
+<!-- razorpay script -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
  @endsection

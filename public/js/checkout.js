@@ -94,7 +94,7 @@ $(document).ready(function(){
                     data:data,
                     success:function(response)
                     {
-                        // alert(response.total_price);
+                       // alert(response.fname);
                         var options = {
                               "key": "rzp_test_XRpVzatl7Qgfl7", // Enter the Key ID generated from the Dashboard
                               "amount": response.total_price*100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -103,30 +103,33 @@ $(document).ready(function(){
                               "description": "Thank you for chosing us",
                               "image": "https://example.com/your_logo",
                              // "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                              "handler": function (response){
-                                  alert(response.razorpay_payment_id);
+                              "handler": function (responseb){
+                                 // alert(responseb.razorpay_payment_id);
+                                  //alert("Payment Completed.Click Ok");
+                                  var data={
+                                    'fname':response.fname,
+                                    'lname':response.lname,
+                                    'email':response.email,
+                                    'phone':response.phone,
+                                    'address1':response.address1,
+                                    'address2':response.address2,
+                                    'city':response.city,
+                                    'state':response.state,
+                                    'country':response.country,
+                                    'pincode':response.pincode,
+                                    'payment_mode':"Paid by Razorpay",
+                                    'payment_id':responseb.razorpay_payment_id 
+                                  };
                                   $.ajax({
                                         method:"POST",
                                         url:"/place-order",
-                                        data:{
-                                          'fname':response.fname,
-                                          'lname':response.lname,
-                                          'email':response.email,
-                                          'phone':response.phone,
-                                          'address1':response.address1,
-                                          'address2':response.address2,
-                                          'city':response.city,
-                                          'state':response.state,
-                                          'country':response.country,
-                                          'payment_mode  ':"Paid by Razorpay",
-                                          'payment_id':response.razorpay_payment_id 
-                                        },
-                                        success:function(response)
+                                        data:data,
+                                        success:function(responsec)
                                         {
-                                          swal(response.status);
+                                          swal(responsec.status);
                                           window.location.href="/my-orders";                      
                                         }
-                                    });
+                                   });
                               },
                               "prefill": {
                                   "name": response.fname+' '+response.lname,

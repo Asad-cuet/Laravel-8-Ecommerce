@@ -67,7 +67,8 @@ View Order
                                                 </tbody>
                                           </table>
                                           </div>
-                                          <h4 class="px-2">Grand Total:<span class="float-end">Rs {{$order->total_price}}</span></h4>
+                                          <h4 class="px-2">Grand Total:<span class="float-right">$ {{$order->total_price}}</span></h4>
+                                          <h6 class="px-2"><span class="float-right">{{$order->payment_mode}}</span></h6>
                                           <div class="mt-3 px-2">
                                                 <label for="" class="">Order Status</label>
                                                 <form action="{{url('/update-order/'.$order->id)}}" method="POST">
