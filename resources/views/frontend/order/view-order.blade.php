@@ -32,7 +32,7 @@
                                               <div class="border p-2">{{$order->phone}}</div>
                                               <label for="">Shipping Address</label>
                                               <div class="border p-2">{{$order->address1.','.$order->address2.','.$order->city.','.$order->state.','.$order->country}}</div>
-                                              <label for="">Zip Code.</label>
+                                              <label for="">Post Code.</label>
                                               <div class="border">{{$order->pincode}}</div>
                                     </div>
 

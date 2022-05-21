@@ -34,7 +34,7 @@
                                                           <td>{{date('d-m-Y',strtotime($item->created_at))}}</td>
                                                           <td>{{$item->tracking_no}}</td>
                                                           <td>{{$item->total_price}}</td>
-                                                          <td>{{$item->payment_mode}}</td>
+                                                          <td>{{$item->payment_mode=='COD' ? 'Cash On Delivery':$item->payment_mode}}</td>
                                                           <td>{{$item->status==0 ? 'Pending':'Completed'}}</td>
                                                           <td>
                                                                 <a href="{{url('/view-order/'.$item->id)}}" class="btn btn-primary">View</a>

@@ -63,7 +63,7 @@ Checkout Page
                                           <span id="country_error" class="text-danger"></span>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                          <label for="">Pin Code</label>
+                                          <label for="">Post Code</label>
                                           <input required type="password" name="pincode" value="{{Auth::user()->pincode}}" class="form-control pincode" placeholder="Enter Pin Code">
                                           <span id="pincode_error" class="text-danger"></span>
                                     </div>
@@ -80,6 +80,7 @@ Checkout Page
                               <table class="table table-striped table-bordered">
                                     <thead>
                                           <tr>
+                                                <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Qty</th>
                                                 <th>Price</th>
@@ -89,6 +90,9 @@ Checkout Page
                                           @php $total=0; @endphp
                                           @foreach ($cartitems as $item)
                                               <tr>
+                                                    <td>
+                                                            <img src="{{asset('assets/uploads/product/'.$item->product->image)}}" width="50px" alt="Product Image">
+                                                    </td>
                                                     <td>{{$item->product->name}}</td>
                                                     <td>{{$item->prod_qty}}</td>
                                                     <td>{{$item->product->selling_price}}</td>
@@ -97,7 +101,7 @@ Checkout Page
                                           @endforeach
                                     </tbody>
                               </table>
-                              <h6>Total : Rs {{$total}}</h6>
+                              <h4>Total : <span class="float-end">$ {{$total}}</span></h4>
                               <hr>
                               <input type="hidden" class="total" value="{{$total}}">
                               <input type="hidden" name="payment_mode" value="COD">

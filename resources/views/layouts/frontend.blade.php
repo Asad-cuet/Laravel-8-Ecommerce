@@ -16,6 +16,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  
     <!-- Styles -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.theme.default.min.css')}}">
