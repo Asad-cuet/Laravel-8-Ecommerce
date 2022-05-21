@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/delete-wishlist-item','Frontend\WishlistController@delete_wishlist_item');
     Route::post('/proceed-to-pay','Frontend\CheckoutController@razorpay_Check');
     Route::post('/add-rating','Frontend\RatingController@add_rating');
+    Route::get('/add-review/{slug}/user-review','Frontend\ReviewController@index');
 });
 
 Auth::routes();
