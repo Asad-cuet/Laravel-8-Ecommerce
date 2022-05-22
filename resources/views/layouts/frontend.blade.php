@@ -39,7 +39,26 @@
 </div>
 
 
+<div class="whats-app">
+  <a href="https://wa.me/+8801781856861?text=I'm%20interested%20in%20your%20car%20for%20sale" target="_blank">
+    <img src="{{asset('assets/image/whats-app.jpg')}}" alt="Whats app logo" height="70px" width="70px">
+  </a>
+</div>
 
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/628a7c727b967b117990a976/1g3mfc8ai';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
 
 
 

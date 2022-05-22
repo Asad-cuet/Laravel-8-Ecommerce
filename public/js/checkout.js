@@ -126,8 +126,9 @@ $(document).ready(function(){
                                         data:data,
                                         success:function(responsec)
                                         {
-                                          swal(responsec.status);
-                                          window.location.href="/my-orders";                      
+                                          swal(responsec.status).then((value)=>{
+                                                window.location.href="/my-orders"; 
+                                          });
                                         }
                                    });
                               },

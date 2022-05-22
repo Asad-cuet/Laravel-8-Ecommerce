@@ -14,46 +14,64 @@ class ReviewController extends Controller
     public function index($slug)
     {
           $product_check=Product::where('slug',$slug)->where('status',0)->first();
-
-          if($product_check)
+          $review_check=Review::where('user_id',Auth::id())->where('prod_id',$product_check->id)->exists();
+          if($review_check)
           {
-              $product_id=$product_check->id;
-              $verified_purchase=Order::where('orders.user_id',Auth::id())
-                                        ->join('order_items','orders.id','order_items.order_id')
-                                        ->where('order_items.prod_id',$product_id)->get();
-              return view('frontend.review.index',['product'=>$product_check,'verified_purchase'=>$verified_purchase]);
+              return redirect()->back()->with('status',"You cannot review a product two times");
           }
           else
           {
-              return redirect()->back()->with('status',"The link you followed was broken");
-          }
+                if($product_check)
+                {
+                    $product_id=$product_check->id;
+                    $verified_purchase=Order::where('orders.user_id',Auth::id())
+                                            ->join('order_items','orders.id','order_items.order_id')
+                                            ->where('order_items.prod_id',$product_id)->get();
+                    return view('frontend.review.index',['product'=>$product_check,'verified_purchase'=>$verified_purchase]);
+                }
+                else
+                {
+                    return redirect()->back()->with('status',"The link you followed was broken");
+                }
+          } 
+
     }
 
 
     public function add_review(Request $request)
     {
         $product_id=$request->input('product_id');
-        $product=Product::where('id',$product_id)->where('status',0)->first();
-        if($product)
+        $review_check=Review::where('user_id',Auth::id())->where('prod_id',$product_id)->exists();
+        if($review_check)
         {
-            $user_review=$request->input('user_review');
-            $new_review=Review::create([
-                    'user_id'=>Auth::id(),
-                    'prod_id'=>$product_id,
-                    'user_review'=>$user_review,
-            ]);
-
-            if($new_review)
-            {
-                $category_slug=$product->category->slug;
-                $prod_slug=$product->slug;
-                return redirect('/category/'.$category_slug.'/'.$prod_slug)->with('status',"Thank you for Review");
-            }
+            return redirect()->back()->with('status',"You cannot review a product two times");
         }
         else
         {
-            return redirect()->back()->with('status',"The link you followed was broken");
+            $product=Product::where('id',$product_id)->where('status',0)->first();
+            if($product)
+            {
+                $user_review=$request->input('user_review');
+                $new_review=Review::create([
+                        'user_id'=>Auth::id(),
+                        'prod_id'=>$product_id,
+                        'user_review'=>$user_review,
+                ]);
+
+                if($new_review)
+                {
+                    $category_slug=$product->category->slug;
+                    $prod_slug=$product->slug;
+                    return redirect('/category/'.$category_slug.'/'.$prod_slug)->with('status',"Thank you for Review");
+                }
+            }
+            else
+            {
+                return redirect()->back()->with('status',"The link you followed was broken");
+            }
+
         }
+
     }
 
 

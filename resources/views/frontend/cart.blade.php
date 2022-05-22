@@ -16,7 +16,7 @@ My Cart
 
 
 <div class="container my-5">
-      <div class="card shadow">
+      <div class="card shadow cartitems">  <!-- cartitem for div reload -->
             @if($product->count()>0)
             <div class="card-body">
                   @php $total=0; @endphp

@@ -44,7 +44,7 @@ class RatingController extends Controller
               }   
               else
               {
-                  return redirect()->back()->with('status',"You can't rate this product without purchase");
+                  return redirect()->back()->with('status',"You can not rate this product without purchase");
               }                       
         }
         else

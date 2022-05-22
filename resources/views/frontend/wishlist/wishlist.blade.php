@@ -16,7 +16,7 @@ Wishlist
 
 
 <div class="container my-5">
-      <div class="card shadow">
+      <div class="card shadow wishlistitems">
             @if($wishlist->count()>0)
             <div class="card-body">
                  
