@@ -138,24 +138,61 @@
                                                 
                                     </div>     
                               </div> 
-                              <div class="col-md-12">
-                                     <hr>
-                                     <h3>Description</h3>
-                                     <p class="mt-3">
-                                           {!!$product->description!!}
-                                     </p>
+    
+                        </div>
+                  </div>
 
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                          Rate this Product
-                                    </button>
-                                    <a href="{{url('/add-review/'.$product->slug.'/user-review')}}" class="btn btn-secondary">
-                                    Write a Review
-                                    </a>
+                  <div class="row">
+                        <div class="col-md-12">
+                              <hr>
+                              <h3>Description</h3>
+                              <p class="mt-3">
+                                    {!!$product->description!!}
+                              </p>                              
+                       </div> 
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                        <div class="col-md-4">
+                        <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Rate this Product
+                              </button>
+                              <a href="{{url('/add-review/'.$product->slug.'/user-review')}}" class="btn btn-secondary">
+                              Write a Review
+                              </a>
+                        </div>
+                        <div class="col-md-8">
+                              @foreach ($reviews as $item)
 
 
-                                     
-                              </div>     
+                               <div class="user-review">
+                                    <label for="">{{$item->user->name}}</label>
+                                    @if($item->user_id==Auth::id())
+                                    <a href="{{url('edit-review/'.$product->slug.'/user-review')}}">Edit</a>
+                                    @endif
+
+                                    <br>
+                                    @if($item->rating)
+                                          @php $user_rated=$item->rating->stars_rated  @endphp
+                                          @for($i=1;$i<=$user_rated;$i++)
+                                                <i class="fa fa-star checked"></i>
+                                          @endfor
+                                          @for($j=$user_rated+1;$j<=5;$j++)
+                                                <i class="fa fa-star"></i>
+                                          @endfor
+                                    @endif                                          
+                                    <small>Reviewd on {{$item->created_at->format('d M Y')}}</small>
+                                    <p>
+                                          {{$item->user_review}}
+                                          <script>console.log('{{$item->ratings}}')</script>
+                                    </p>                                   
+                              </div>   
+
+
+                              @endforeach
                         </div>
                   </div>
             </div>

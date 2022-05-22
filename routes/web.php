@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function() {
     Route::post('/proceed-to-pay','Frontend\CheckoutController@razorpay_Check');
     Route::post('/add-rating','Frontend\RatingController@add_rating');
     Route::get('/add-review/{slug}/user-review','Frontend\ReviewController@index');
+    Route::post('/add-review','Frontend\ReviewController@add_review');
+    Route::get('/edit-review/{slug}/user-review','Frontend\ReviewController@edit_review');
+    Route::post('/update-review','Frontend\ReviewController@update');
 });
 
 Auth::routes();
