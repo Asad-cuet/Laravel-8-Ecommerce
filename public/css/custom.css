@@ -35,3 +35,13 @@
     bottom:5px;
     left:5px;
   }
+
+  .search-bar {
+    width:40%;
+    margin-left: 5%;
+  }
+  /*autocomplete var */
+
+  .ui-menu{
+    z-index: 3500!important;
+  }

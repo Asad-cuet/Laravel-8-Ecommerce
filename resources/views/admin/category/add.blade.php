@@ -10,12 +10,21 @@
       
             <div class="col-md-6 mb-3">
                   <label for="">Name</label>
-                  <input type="text" class="form-control" name="name">
+                  <input type="text" id="name" class="form-control" name="name">
             </div>      
             <div class="col-md-6 mb-3">
                   <label for="">Slug</label>
-                  <input type="text" class="form-control" name="slug">
+                  <input type="text" id="slug" class="form-control" name="slug">
             </div>      
+
+            <script>   
+                        $('#name').keyup(function()   //click
+                        {
+                        var name=$('#name').val();
+                        name=name.replace(/\s+/g, '-');
+                        $('#slug').val(name);
+                        });
+            </script>
 
             <div class="col-md-12 mb-3">
                   <label for="">Description</label>
@@ -23,7 +32,7 @@
             </div> 
             
             <div class="col-md-6 mb-3">
-                  <label for="">Status</label>
+                  <label for="">Deactivate</label>   <!--Deactivate for rating,review, Table column name=status ; 0 for active, 1 for deactivate -->
                   <input type="checkbox" name="status">
             </div>  
             <div class="col-md-6 mb-3">

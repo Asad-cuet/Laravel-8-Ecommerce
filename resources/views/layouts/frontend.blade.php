@@ -11,9 +11,13 @@
 
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+      <!-- Jquery autocomplete -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
  
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
@@ -62,6 +66,8 @@
 
 
 
+  <!--Autocomplete script-->
+  <script src="{{asset('js/auto_complete.js')}}"></script>
   <!--   Custome JS Files   -->
   <script src="{{asset('js/custom.js')}}"></script>
     <!--   Checkout JS Files   -->
@@ -78,6 +84,7 @@
          swal("{{ session('status') }}");
         </script>    
   @endif   
+
   @yield('scripts')
  
 

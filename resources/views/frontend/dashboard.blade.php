@@ -59,6 +59,16 @@ Welcome to E-Shop
 @endsection
 
 @section('scripts')
+
+@if(Auth::user())
+      @if(Auth::user()->email_verified_at==NULL)
+      <script>
+      swal("Verify Your Email Address.Check Your Mail");
+      </script>    
+      @endif   
+@endif   
+
+
 <script>
       $('.featured-carousel').owlCarousel({
             loop:true,

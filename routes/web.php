@@ -22,8 +22,10 @@ Route::get('category/{slug}','Frontend\FrontendController@view_category');
 Route::get('category/{cate_slug}/{prod_slug}','Frontend\FrontendController@view_product');
 Route::post('/add-to-cart','Frontend\CartController@addProduct');
 Route::get('/load-cart-data','Frontend\CartController@load_cart_data');
+Route::get('/product-list','Frontend\FrontendController@ajax_product_list');
+Route::post('/search-product','Frontend\FrontendController@search_product');
                                 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function() {   // use for verify email:  ['auth','verified']
     Route::get('/cart','Frontend\CartController@viewCart')->name('cart');
     Route::post('/delete-cart-item','Frontend\CartController@deleteCartItem');
     Route::post('/update-cart','Frontend\CartController@updateCart');
@@ -42,7 +44,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/update-review','Frontend\ReviewController@update');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

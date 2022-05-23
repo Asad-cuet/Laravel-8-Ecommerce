@@ -175,8 +175,8 @@
                                     @endif
 
                                     <br>
-                                    @if($item->rating)
-                                          @php $user_rated=$item->rating->stars_rated  @endphp
+                                    @if($user_rating)
+                                          @php $user_rated=$user_rating->stars_rated  @endphp
                                           @for($i=1;$i<=$user_rated;$i++)
                                                 <i class="fa fa-star checked"></i>
                                           @endfor

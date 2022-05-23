@@ -12,12 +12,21 @@
       
             <div class="col-md-6 mb-3">
                   <label for="">Name</label>
-                  <input type="text" class="form-control" name="name" value="{{$val->name}}">
+                  <input type="text" class="form-control" id="name" name="name" value="{{$val->name}}">
             </div>      
             <div class="col-md-6 mb-3">
                   <label for="">Slug</label>
-                  <input type="text" class="form-control" name="slug" value="{{$val->slug}}">
-            </div>      
+                  <input type="text" class="form-control" id="slug" name="slug" value="{{$val->slug}}">
+            </div>  
+            
+            <script>   
+                  $('#name').keyup(function()   //click
+                  {
+                  var name=$('#name').val();
+                  name=name.replace(/\s+/g, '-');
+                  $('#slug').val(name);
+                  });
+            </script>
 
             <div class="col-md-12 mb-3">
                   <label for="">Description</label>
@@ -25,7 +34,7 @@
             </div> 
             
             <div class="col-md-6 mb-3">
-                  <label for="">Status</label>
+                  <label for="">Deactivate</label>   <!--Deactivate for rating,review, Table column name=status ; 0 for active, 1 for deactivate -->
                   <input type="checkbox" name="status" @php if($val->status==1) echo"checked"  @endphp>
             </div>  
             <div class="col-md-6 mb-3">

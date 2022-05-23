@@ -71,6 +71,44 @@ class FrontendController extends Controller
         else
         {
         return view('frontend/view-product')->with('status','No such Category found');
+        } 
+    }
+
+    public function ajax_product_list()
+    {
+        $product=Product::select('name')->where('status',0)->get();
+        $data=[];
+        foreach($product as $item)
+        {
+            $data[]=$item['name'];
         }
+
+        return $data;
+    }
+
+    public function search_product(Request $request)
+    {
+        $product_name=$request->input('product_name');
+
+        if($product_name!='')
+        {
+            $product=Product::where('name','LIKE','%'.$product_name.'%')->first();
+            if($product)
+            {
+                return redirect('category/'.$product->category->slug.'/'.$product->slug);
+            }
+            else
+            {
+                return redirect()->back()->with('status',"No product matched your search");
+            }
+
+        }
+
+        else
+        {
+            return redirect()->back();
+        }
+
+
     }
 }
