@@ -97,9 +97,9 @@ Welcome to E-Shop
       $('.category-carousel').owlCarousel({
             loop:true,
             margin:10,
-           // autoplay:true,
-           // autoplayTimeout:1500,
-           // autoplayHoverPause:true,
+            autoplay:true,
+            autoplayTimeout:1500,
+            autoplayHoverPause:true,
             dots:false,
             responsiveClass:true,
             responsive:{

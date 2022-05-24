@@ -23,7 +23,7 @@ Route::get('category/{cate_slug}/{prod_slug}','Frontend\FrontendController@view_
 Route::post('/add-to-cart','Frontend\CartController@addProduct');
 Route::get('/load-cart-data','Frontend\CartController@load_cart_data');
 Route::get('/product-list','Frontend\FrontendController@ajax_product_list');
-Route::post('/search-product','Frontend\FrontendController@search_product');
+Route::post('/search-product','Frontend\FrontendController@search_products');
                                 
 Route::middleware('auth')->group(function() {   // use for verify email:  ['auth','verified']
     Route::get('/cart','Frontend\CartController@viewCart')->name('cart');

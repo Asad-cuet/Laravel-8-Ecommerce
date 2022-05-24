@@ -14,6 +14,7 @@ class RatingController extends Controller
     public function add_rating(Request $request)
     {
         $stars_rated=$request->input('product_rating');
+        if(empty($stars_rated)) { $stars_rated=5; }
         $product_id=$request->input('product_id');
 
         $product_check=Product::where('id',$product_id)->where('status',0)->first();

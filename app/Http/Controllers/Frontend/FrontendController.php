@@ -111,4 +111,36 @@ class FrontendController extends Controller
 
 
     }
+
+    public function search_products(Request $request)
+    {
+        $product_name=$request->input('product_name');
+
+        if($product_name!='')
+        {
+            $product=Product::where('name','LIKE','%'.$product_name.'%')
+                             ->orWhere('meta_title','LIKE','%'.$product_name.'%')
+                             ->orWhere('meta_keywords','LIKE','%'.$product_name.'%')
+                             ->orWhere('meta_descript','LIKE','%'.$product_name.'%')
+                             ->orWhere('small_description','LIKE','%'.$product_name.'%')
+                             ->orWhere('description','LIKE','%'.$product_name.'%')
+                             ->get();
+            if($product)
+            {
+                return view('frontend.search',['product'=>$product]);
+            }
+            else
+            {
+                return redirect()->back()->with('status',"No product matched your search");
+            }
+
+        }
+
+        else
+        {
+            return redirect()->back();
+        }
+
+
+    }
 }

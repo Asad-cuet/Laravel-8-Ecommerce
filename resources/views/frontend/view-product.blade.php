@@ -23,7 +23,7 @@
 
                                      <div class="rating-css">
                                           <div class="star-icon">
-                                                @if($user_rating)
+                                                @if(!empty($user_rating))
                                                       @for($i=1;$i<=$user_rating->stars_rated;$i++)
                                                             <input type="radio" value="{{$i}}" name="product_rating" checked id="rating{{$i}}">
                                                             <label for="rating{{$i}}" class="fa fa-star"></label>
@@ -41,7 +41,7 @@
                                                       <label for="rating3" class="fa fa-star"></label>
                                                       <input type="radio" value="4" name="product_rating" id="rating4">
                                                       <label for="rating4" class="fa fa-star"></label>
-                                                      <input type="radio" value="5" name="product_rating" id="rating5">
+                                                      <input type="radio" value="5" name="product_rating" id="rating5" selected>
                                                       <label for="rating5" class="fa fa-star"></label>
                                                 @endif
 
@@ -107,9 +107,9 @@
 
                               </div>
 
-                              <p class="mt-3">
-                                    {{$product->small_description}}     
-                              </p>
+                              <div class="mt-3">
+                                    @php echo html_entity_decode( $product->small_description) @endphp
+                              </div>
                               <hr>
                               @if($product->qty>0)
                                     <label class="badge bg-success">In stock</label>
@@ -145,9 +145,9 @@
                   <div class="row">
                         <div class="col-md-12">
                               <hr>
-                              <h3>Description</h3>
+                              <h5>Description</h5>
                               <p class="mt-3">
-                                    {!!$product->description!!}
+                                    @php echo html_entity_decode( $product->description) @endphp
                               </p>                              
                        </div> 
                   </div>

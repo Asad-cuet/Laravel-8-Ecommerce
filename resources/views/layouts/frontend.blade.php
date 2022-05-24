@@ -65,7 +65,6 @@
   <!--End of Tawk.to Script-->
 
 
-
   <!--Autocomplete script-->
   <script src="{{asset('js/auto_complete.js')}}"></script>
   <!--   Custome JS Files   -->

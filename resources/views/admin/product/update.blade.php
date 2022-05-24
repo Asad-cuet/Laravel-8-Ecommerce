@@ -38,11 +38,11 @@
 
             <div class="col-md-12 mb-3">
                   <label for="">Small Description</label>
-                  <textarea rows="3" class="form-control" name="small_description">{{$val->small_description}}</textarea>
+                  <textarea id="myMce" class="form-control" name="small_description">{{$val->small_description}}</textarea>
             </div> 
             <div class="col-md-12 mb-3">
                   <label for="">Description</label>
-                  <textarea rows="3" class="form-control" name="description">{{$val->description}}</textarea>
+                  <textarea id="myMce" class="form-control" name="description">{{$val->description}}</textarea>
             </div> 
             
             <div class="col-md-6 mb-3">

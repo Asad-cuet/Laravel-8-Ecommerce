@@ -38,6 +38,16 @@
 
       </div> 
 
+
+  <!--   MCE Html Editor   -->    
+  <script src="https://cdn.tiny.cloud/1/k9v76halqypql8umijekmas8ngbsunz21pageat02ybsqpte/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#myMce',
+      plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+      toolbar_mode: 'floating',
+    });      
+ </script>
   <!--   Core JS Files   -->
   <script src="{{ asset('admin/js/jquery.min.js')}}"></script>
   <script src="{{ asset('admin/js/popper.min.js')}}"></script>

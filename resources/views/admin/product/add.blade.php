@@ -2,7 +2,7 @@
              
 @section('content')
 <div class="card">
-      <div class="card-body">
+      <div class="card-body text-dark">
 
       <form method="POST" action="{{ url('products/insert')}}" enctype="multipart/form-data">
         @csrf 
@@ -37,11 +37,11 @@
 
             <div class="col-md-12 mb-3">
                   <label for="">Small Description</label>
-                  <textarea rows="3" class="form-control" name="small_description"></textarea>
+                  <textarea id="myMce" class="form-control" name="small_description"></textarea>
             </div> 
             <div class="col-md-12 mb-3">
                   <label for="">Description</label>
-                  <textarea rows="3" class="form-control" name="description"></textarea>
+                  <textarea id="myMce" class="form-control" name="description"></textarea>
             </div> 
             
             <div class="col-md-6 mb-3">
