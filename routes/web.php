@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SslCommerzPaymentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,12 @@ Route::post('/add-to-cart','Frontend\CartController@addProduct');
 Route::get('/load-cart-data','Frontend\CartController@load_cart_data');
 Route::get('/product-list','Frontend\FrontendController@ajax_product_list');
 Route::post('/search-product','Frontend\FrontendController@search_products');
+
+
+
+
+
+
                                 
 Route::middleware('auth')->group(function() {   // use for verify email:  ['auth','verified']
     Route::get('/cart','Frontend\CartController@viewCart')->name('cart');
@@ -42,6 +50,19 @@ Route::middleware('auth')->group(function() {   // use for verify email:  ['auth
     Route::post('/add-review','Frontend\ReviewController@add_review');
     Route::get('/edit-review/{slug}/user-review','Frontend\ReviewController@edit_review');
     Route::post('/update-review','Frontend\ReviewController@update');
+    Route::any('/ssl-payment','Frontend\SslController@payment');
+
+    // SSLCOMMERZ Start
+    Route::any('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+    Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+    Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+    Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+    Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+    //SSLCOMMERZ END
+
+
 });
 
 Auth::routes(['verify'=>true]);

@@ -157,10 +157,10 @@
                   <div class="row">
                         <div class="col-md-4">
                         <!-- Button trigger modal -->
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Rate this Product
                               </button>
-                              <a href="{{url('/add-review/'.$product->slug.'/user-review')}}" class="btn btn-secondary">
+                              <a href="{{url('/add-review/'.$product->slug.'/user-review')}}" class="btn btn-secondary mt-3">
                               Write a Review
                               </a>
                         </div>
