@@ -33,7 +33,7 @@ class SslCommerzPaymentController extends Controller
 
         # Here you have to receive all the order data to initate the payment.
         # Lets your oder trnsaction informations are saving in a table called "orders"
-        # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
+        # In orders table order uniq identity is "payment_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
 
         $post_data = array();
@@ -71,59 +71,27 @@ class SslCommerzPaymentController extends Controller
 
 
         
-        $order=new Order();
-        $order->user_id = Auth::id();
-        $order->fname = $requestData['fname'];
-        $order->lname = $requestData['lname'];
-        $order->email = $requestData['email'];
-        $order->phone = $requestData['phone'];
-        $order->address1 = $requestData['address1'];
-        $order->address2 = $requestData['address2'];
-        $order->city = $requestData['city'];
-        $order->state = $requestData['state'];
-        $order->country = $requestData['country'];
-        $order->pincode = $requestData['pincode'];
-        $order->total_price = $requestData['total'];
-        $order->tracking_no = 'asad'.rand(1111,9999);
-
-        $order->payment_mode="Paid by SSL";
-        $order->payment_id=$post_data['tran_id'];
-        $order->save();
 
 
 
 
-        $cartitems=Cart::where('user_id',Auth::id())->get();      
-        foreach($cartitems as $item)
-        {
-            OrderItem::create([
-                'order_id'=>$order->id,
-                'prod_id'=>$item->prod_id,
-                'qty'=>$item->prod_qty,
-                'price'=>$item->product->selling_price,
-            ]);
-
-            //reducing quantity
-            $prod=Product::where('id',$item->prod_id)->first();
-            $prod->qty=$prod->qty - $item->prod_qty;
-            $prod->update();
-        } 
 
 
-        if(Auth::user()->address1==NULL)
-        {
-            $user=User::where('id',Auth::id())->first();
-            $user->fname = $requestData['fname'];
-            $user->lname = $requestData['lname'];
-            $user->phone = $requestData['phone'];
-            $user->address1 = $requestData['address1'];
-            $user->address2 = $requestData['address2'];
-            $user->city = $requestData['city'];
-            $user->state = $requestData['state'];
-            $user->country = $requestData['country'];
-            $user->pincode = $requestData['pincode'];
-            $user->update();
-        }
+
+
+
+        $request->session()->put('fname',$requestData['fname']);
+        $request->session()->put('lname',$requestData['lname']);
+        $request->session()->put('email',$requestData['email']);
+        $request->session()->put('phone',$requestData['phone']);
+        $request->session()->put('address1',$requestData['address1']);
+        $request->session()->put('address2',$requestData['address2']);
+        $request->session()->put('city',$requestData['city']);
+        $request->session()->put('state',$requestData['state']);
+        $request->session()->put('country',$requestData['country']);
+        $request->session()->put('pincode',$requestData['pincode']);
+        $request->session()->put('total_price',$requestData['total']);
+
 
 
 
@@ -146,16 +114,81 @@ class SslCommerzPaymentController extends Controller
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
+        $name = $request->input('cus_name');
+
+
+
+
+        $order = DB::table('orders')
+        ->where('payment_id', $tran_id)
+        ->updateOrInsert([
+            'user_id' => Auth::id(),
+            'fname' => $request->session()->get('fname'),
+            'lname' => $request->session()->get('lname'),
+            'email' => $request->session()->get('email'),
+            'phone' => $request->session()->get('phone'),
+            'address1' => $request->session()->get('address1'),
+            'address2' => $request->session()->get('address2'),
+            'city' => $request->session()->get('city'),
+            'state' => $request->session()->get('state'),
+            'country' => $request->session()->get('country'),
+            'pincode' => $request->session()->get('pincode'),
+            'total_price' => $request->session()->get('total_price'),
+            'tracking_no' => 'asad'.rand(1111,9999),
+            'payment_mode' => "Paid by SSL",
+            'payment_id' => $tran_id,
+        ]);
+
+
+       $order=Order::where('payment_id',$tran_id)->first();
+
+        $cartitems=Cart::where('user_id',Auth::id())->get();      
+        foreach($cartitems as $item)
+        {
+            OrderItem::create([
+                'order_id'=>$order->id,
+                'prod_id'=>$item->prod_id,
+                'qty'=>$item->prod_qty,
+                'price'=>$item->product->selling_price,
+            ]);
+
+            //reducing quantity
+            $prod=Product::where('id',$item->prod_id)->first();
+            $prod->qty=$prod->qty - $item->prod_qty;
+            $prod->update();
+        } 
+
+
+        if(Auth::user()->address1==NULL)
+        {
+            $user=User::where('id',Auth::id())->first();
+            $user->fname = $request->session()->get('fname');
+            $user->lname = $request->session()->get('lname');
+            $user->phone = $request->session()->get('phone');
+            $user->address1 = $request->session()->get('address1');
+            $user->address2 = $request->session()->get('address2');
+            $user->city = $request->session()->get('city');
+            $user->state = $request->session()->get('state');
+            $user->country = $request->session()->get('country');
+            $user->pincode = $request->session()->get('pincode');
+            $user->update();
+        }
+
+
+
+
+
+
 
   
-         
-         $cartitems=Cart::where('user_id',Auth::id())->get();
-         Cart::destroy($cartitems);
+       $cartitems=Cart::where('user_id',Auth::id())->get();
+       Cart::destroy($cartitems);
 
-         
+       
          return redirect('/my-orders')->with('status','Order Placed Successfully');
 
- 
+          
+  
 
 
     }
@@ -165,12 +198,12 @@ class SslCommerzPaymentController extends Controller
         $tran_id = $request->input('tran_id');
 
         $order_detials = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+            ->where('payment_id', $tran_id)
+            ->select('payment_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
             $update_product = DB::table('orders')
-                ->where('transaction_id', $tran_id)
+                ->where('payment_id', $tran_id)
                 ->update(['status' => 'Failed']);
             echo "Transaction is Falied";
         } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
@@ -186,12 +219,12 @@ class SslCommerzPaymentController extends Controller
         $tran_id = $request->input('tran_id');
 
         $order_detials = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+            ->where('payment_id', $tran_id)
+            ->select('payment_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
             $update_product = DB::table('orders')
-                ->where('transaction_id', $tran_id)
+                ->where('payment_id', $tran_id)
                 ->update(['status' => 'Canceled']);
             echo "Transaction is Cancel";
         } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
@@ -213,8 +246,8 @@ class SslCommerzPaymentController extends Controller
 
             #Check order status in order tabel against the transaction id or order id.
             $order_details = DB::table('orders')
-                ->where('transaction_id', $tran_id)
-                ->select('transaction_id', 'status', 'currency', 'amount')->first();
+                ->where('payment_id', $tran_id)
+                ->select('payment_id', 'status', 'currency', 'amount')->first();
 
             if ($order_details->status == 'Pending') {
                 $sslc = new SslCommerzNotification();
@@ -226,7 +259,7 @@ class SslCommerzPaymentController extends Controller
                     Here you can also sent sms or email for successful transaction to customer
                     */
                     $update_product = DB::table('orders')
-                        ->where('transaction_id', $tran_id)
+                        ->where('payment_id', $tran_id)
                         ->update(['status' => 'Processing']);
 
                     echo "Transaction is successfully Completed";
@@ -236,7 +269,7 @@ class SslCommerzPaymentController extends Controller
                     Here you need to update order status as Failed in order table.
                     */
                     $update_product = DB::table('orders')
-                        ->where('transaction_id', $tran_id)
+                        ->where('payment_id', $tran_id)
                         ->update(['status' => 'Failed']);
 
                     echo "validation Fail";
