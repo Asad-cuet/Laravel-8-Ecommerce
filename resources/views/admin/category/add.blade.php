@@ -32,8 +32,8 @@
             </div> 
             
             <div class="col-md-6 mb-3">
-                  <label for="">Deactivate</label>   <!--Deactivate for rating,review, Table column name=status ; 0 for active, 1 for deactivate -->
-                  <input type="checkbox" name="status">
+                  <label for="">Active</label>   
+                  <input checked type="checkbox" name="status">
             </div>  
             <div class="col-md-6 mb-3">
                   <label for="">Popular</label>

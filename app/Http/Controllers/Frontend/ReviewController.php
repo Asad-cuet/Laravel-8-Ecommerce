@@ -13,7 +13,7 @@ class ReviewController extends Controller
 {
     public function index($slug)
     {
-          $product_check=Product::where('slug',$slug)->where('status',0)->first();
+          $product_check=Product::where('slug',$slug)->first();
           $review_check=Review::where('user_id',Auth::id())->where('prod_id',$product_check->id)->exists();
           if($review_check)
           {
@@ -48,7 +48,7 @@ class ReviewController extends Controller
         }
         else
         {
-            $product=Product::where('id',$product_id)->where('status',0)->first();
+            $product=Product::where('id',$product_id)->first();
             if($product)
             {
                 $user_review=$request->input('user_review');
@@ -77,7 +77,7 @@ class ReviewController extends Controller
 
     public function edit_review($slug)
     {
-        $product=Product::where('slug',$slug)->where('status',0)->first();
+        $product=Product::where('slug',$slug)->first();
         if($product)
         {
             $product_id=$product->id;

@@ -14,14 +14,14 @@ class FrontendController extends Controller
 {
     public function index() 
     {
-        $feteared_product=Product::where('trending','1')->take(15)->get();
-        $trending_category=Category::where('popular','1')->take(15)->get();
+        $feteared_product=Product::where('trending','1')->where('status',1)->take(15)->get();
+        $trending_category=Category::where('popular','1')->where('status',1)->take(15)->get();
         return view('frontend/dashboard',['feteaured_product'=>$feteared_product,'trending_category'=>$trending_category]);
 
     }
     public function category() 
     {
-        $category=Category::all();
+        $category=Category::where('status',1)->get();
         return view('frontend/category',['category'=>$category]);
 
     }
@@ -29,7 +29,7 @@ class FrontendController extends Controller
 
     public function view_category($slug) 
     {
-        if($category=Category::where('slug',$slug)->exists())
+        if($category=Category::where('slug',$slug)->where('status',1)->exists())
         {
             $category=Category::where('slug',$slug)->first();
             $product=Product::where('cate_id',$category->id)->orderBy('id','DESC')->get();
@@ -45,7 +45,7 @@ class FrontendController extends Controller
     {
         if(Category::where('slug',$cate_slug)->exists())
         {
-            if(Product::where('slug',$prod_slug)->exists())
+            if(Product::where('slug',$prod_slug)->where('status',1)->exists())
             {
                 $product=Product::where('slug',$prod_slug)->first();
                 $rating=Rating::where('prod_id',$product->id)->get();
@@ -142,5 +142,17 @@ class FrontendController extends Controller
         }
 
 
+    }
+
+
+    public function test()
+    {
+        $product=Product::where('status',0)->get();
+        foreach($product as $item)
+        {
+        $item->status=1;
+        $item->save();
+        }
+        
     }
 }

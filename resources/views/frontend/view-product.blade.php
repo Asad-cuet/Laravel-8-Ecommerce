@@ -1,9 +1,12 @@
 @extends('layouts.frontend')                                     <!-- showing main component  -->
    
-@section('title')
-{{$product->name}}
-@endsection
+@section('title'){{$product->name}}@endsection
 
+@section('meta')
+<meta name="title" content="{{$product->meta_title}}">
+<meta name="description" content="{{$product->meta_descript}}">
+<meta name="keywords" content="{{$product->meta_keywords}}">    
+@endsection
 
 @section('content')
 

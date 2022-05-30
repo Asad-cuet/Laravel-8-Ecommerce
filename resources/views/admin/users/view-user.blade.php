@@ -56,7 +56,7 @@
                                               <div class="border">{{$user->country}}</div>
                                     </div>
                                     <div class="col-md-4 mt-3">
-                                          <label for="">Pin Code</label>
+                                          <label for="">Post Code</label>
                                           <div class="border">{{$user->pincode}}</div>
                                     </div>                                 
 

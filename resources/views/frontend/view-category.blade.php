@@ -1,8 +1,14 @@
 @extends('layouts.frontend')                                     <!-- showing main component  -->
    
-@section('title')
-{{$category->name}}
+@section('title'){{$category->name}}@endsection
+
+
+@section('meta')
+<meta name="title" content="{{$category->meta_title}}">
+<meta name="description" content="{{$category->meta_descript}}">
+<meta name="keywords" content="{{$category->meta_keywords}}">    
 @endsection
+
 
 
 @section('content')

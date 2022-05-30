@@ -34,7 +34,7 @@
             </div> 
             
             <div class="col-md-6 mb-3">
-                  <label for="">Deactivate</label>   <!--Deactivate for rating,review, Table column name=status ; 0 for active, 1 for deactivate -->
+                  <label for="">Active</label>  
                   <input type="checkbox" name="status" @php if($val->status==1) echo"checked"  @endphp>
             </div>  
             <div class="col-md-6 mb-3">
