@@ -1,6 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg {{App\Models\Setting::first()->nav_color}}">
       <div class="container">
-        <a class="navbar-brand" href="{{url('')}}">E-Shop</a>
+        
+        <a class="navbar-brand" href="{{url('')}}">
+          <img src="{{asset('assets/setting/'.App\Models\Setting::first()->logo)}}" class="rounded" alt="Logo" width="70px">
+          {{App\Models\Setting::first()->name}}
+        </a>
 
         <!-- Search box -->
          <div class="search-bar">
@@ -22,9 +26,7 @@
             <li class="nav-item">
               <a class="nav-link {{Request::is('/') ? 'active':'' }}" aria-current="page" href="{{url('')}}">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " href="#">Features</a>
-            </li>
+
             <li class="nav-item">
               <a class="nav-link {{Request::is('category') ? 'active':'' }}" href="{{url('/category')}}">Category</a>
             </li>

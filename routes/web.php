@@ -82,7 +82,7 @@ Route::middleware(['auth','isAdmin'])->group(function () {
 
     Route::get('/dashboard','Admin\DashboardController@index');
 
-    
+    //Category    
     Route::prefix('categories')->name('category')->group(function(){
         Route::get('','Admin\CategoryController@index')->name('');
          Route::get('insert_form','Admin\CategoryController@insert_form')->name('.read'); 
@@ -91,8 +91,10 @@ Route::middleware(['auth','isAdmin'])->group(function () {
          Route::post('update/{id}','Admin\CategoryController@update')->name('.update'); 
          Route::get('delete/{id}','Admin\CategoryController@delete')->name('.delete'); 
                                       });
-    
+
+    //Product  
     Route::prefix('products')->name('product')->group(function(){
+
         Route::get('','Admin\ProductController@index')->name('');
          Route::get('insert_form','Admin\ProductController@insert_form')->name('.read'); 
          Route::post('insert','Admin\ProductController@insert')->name('.insert'); 
@@ -101,13 +103,19 @@ Route::middleware(['auth','isAdmin'])->group(function () {
          Route::get('delete/{id}','Admin\ProductController@delete')->name('.delete'); 
                                       });
 
-
+        //Order
         Route::get('/orders','Admin\OrderController@index');  
         Route::get('/admin/view-order/{order_id}','Admin\OrderController@view_order');                               
         Route::put('/update-order/{order_id}','Admin\OrderController@update_order');                               
-        Route::get('/order-history','Admin\OrderController@order_history');    
+        Route::get('/order-history','Admin\OrderController@order_history');   
+
+        //User 
         Route::get('/users','Admin\UserController@index');
-        Route::get('/view-user/{user_id}','Admin\UserController@view_user');                           
+        Route::get('/view-user/{user_id}','Admin\UserController@view_user');  
+
+        //Setting                         
+        Route::get('/setting','Setting\SettingController@index');                           
+        Route::post('/setting/update/{id}','Setting\SettingController@update');                           
   });
 
 

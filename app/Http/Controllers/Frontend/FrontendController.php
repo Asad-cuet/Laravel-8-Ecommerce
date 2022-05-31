@@ -47,7 +47,9 @@ class FrontendController extends Controller
         {
             if(Product::where('slug',$prod_slug)->where('status',1)->exists())
             {
+                $category=Category::where('slug',$cate_slug)->first()->id;
                 $product=Product::where('slug',$prod_slug)->first();
+                $related_products=Product::where('cate_id',$category)->where('id','!=',$product->id)->get();
                 $rating=Rating::where('prod_id',$product->id)->get();
                 $rating_sum=Rating::where('prod_id',$product->id)->sum('stars_rated');
                 $user_rating=Rating::where('prod_id',$product->id)->where('user_id',Auth::id())->first();
@@ -61,7 +63,7 @@ class FrontendController extends Controller
                     $rating_value=0;
                 }
                 
-                return view('frontend/view-product',['product'=>$product,'rating'=>$rating,'rating_value'=>$rating_value,'user_rating'=>$user_rating,'reviews'=>$reviews]);
+                return view('frontend/view-product',['product'=>$product,'rating'=>$rating,'rating_value'=>$rating_value,'user_rating'=>$user_rating,'reviews'=>$reviews,'related_products'=>$related_products]);
             }
             else
             {

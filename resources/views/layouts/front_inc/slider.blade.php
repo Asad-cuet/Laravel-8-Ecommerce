@@ -6,13 +6,13 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{asset('assets/image/ban.png')}}" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/setting/'.App\Models\Setting::first()->banner_image1)}}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{{asset('assets/image/ban.png')}}" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/setting/'.App\Models\Setting::first()->banner_image2)}}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{{asset('assets/image/ban.png')}}" class="d-block w-100" alt="...">
+      <img src="{{asset('assets/setting/'.App\Models\Setting::first()->banner_image3)}}" class="d-block w-100" alt="...">
     </div>
 
   </div>

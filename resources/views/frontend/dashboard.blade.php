@@ -1,9 +1,14 @@
 @extends('layouts.frontend')                                     <!-- showing main component  -->
    
 @section('title')
-Welcome to E-Shop
+{{App\Models\Setting::first()->title}}
 @endsection
 
+@section('meta')
+<meta name="title" content="{{App\Models\Setting::first()->meta_title}}">
+<meta name="description" content="{{App\Models\Setting::first()->meta_descript}}">
+<meta name="keywords" content="{{App\Models\Setting::first()->meta_keywords}}">    
+@endsection
 
 @section('content')
 @include('layouts.front_inc.slider')
@@ -15,7 +20,7 @@ Welcome to E-Shop
                   <h2>Featured Products</h2>
                   <div class="owl-carousel featured-carousel owl-theme">
                         @foreach ($feteaured_product as $item)
-                        <a href="{{url('category/'.$item->category->slug.'/'.$item->slug)}}" >
+                        <a href="{{url('category/'.$item->category->slug.'/'.$item->slug)}}">
                               <div class="item">
                                     <div class="card">
                                           <img src="{{asset('assets/uploads/product/'.$item->image)}}" alt="Product Image">
@@ -96,7 +101,7 @@ Welcome to E-Shop
       })
       $('.category-carousel').owlCarousel({
             loop:true,
-            margin:10,
+            margin:0,
             autoplay:true,
             autoplayTimeout:1500,
             autoplayHoverPause:true,

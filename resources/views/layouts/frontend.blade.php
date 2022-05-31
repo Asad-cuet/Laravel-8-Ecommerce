@@ -29,6 +29,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/css/bootstrap.min.css.map') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/js/bootstrap.bundle.min.js.map') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/owl/owl.theme.default.min.css')}}">
    <!-- Google fonts -->
@@ -45,7 +47,7 @@
 @include('layouts.front_inc.front_navbar')
 
 
-<div class="content">
+<div class="content {{App\Models\Setting::first()->body_color}}">
   @yield('content')
 </div>
 
@@ -55,6 +57,10 @@
     <img src="{{asset('assets/image/whats-app.jpg')}}" alt="Whats app logo" height="70px" width="70px">
   </a>
 </div>
+
+
+@include('layouts.front_inc.footer')
+
 
 
 <!--Start of Tawk.to Script-->

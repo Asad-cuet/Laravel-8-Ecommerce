@@ -45,3 +45,7 @@
   .ui-menu{
     z-index: 3500!important;
   }
+.row a {
+  text-decoration:none!important;
+  color: black!important;;
+}

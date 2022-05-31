@@ -15,12 +15,6 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
           <li class="nav-item {{Request::is('categories') ? 'active':'' }}">
             <a class="nav-link" href="{{url('/categories')}}">
               <i class="material-icons">library_books</i>
@@ -50,10 +44,10 @@
           </li>
 
 
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+          <li class="nav-item {{Request::is('setting') ? 'active':'' }}">
+            <a class="nav-link" href="{{url('/setting')}}">
+              <i class="material-icons">library_books</i>
+              <p>Setting</p>
             </a>
           </li>
 
