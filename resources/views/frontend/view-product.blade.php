@@ -138,7 +138,21 @@
                                           <button type="button" class="btn btn-success addToWishlist me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
                                           @endif
                                            
-                                                
+                                                    
+                                    </div> 
+                                    <div class="mt-2 text-secondary">
+                                          @php
+                                                $ip=Request::ip();
+                                                if(!App\Models\View::where('ip',$ip)->where('prod_id',$product->id)->exists())
+                                                {
+                                                      $view=new App\Models\View;
+                                                      $view->prod_id=$product->id;
+                                                      $view->ip=$ip;
+                                                      $view->save();
+                                                }
+                                                $views=App\Models\View::where('prod_id',$product->id)->count();        
+                                          @endphp
+                                          Views: {{$views}}
                                     </div>     
                               </div> 
     
@@ -209,7 +223,7 @@
 <div class="py-5">
       <div class="container">
             <div class="row">
-                  <h2>Related Products</h2>
+                  <h4>Related Products</h4>
                   <div class="owl-carousel featured-carousel owl-theme">
                         @foreach ($related_products as $item)
                         <a href="{{url('category/'.$item->category->slug.'/'.$item->slug)}}">

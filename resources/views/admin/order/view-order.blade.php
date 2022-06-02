@@ -78,7 +78,8 @@ View Order
                                                             <option {{$order->status==0? 'selected':''}} value="0">Pending</option>
                                                             <option {{$order->status==1? 'selected':''}} value="1">Completed</option>
                                                             </select>
-                                                            <button type="submit" class="btn btn-primary mt-3 float-end">Update</button>
+                                                            <button type="submit" class="btn btn-primary mt-3">Update</button>
+                                                            <a  href="{{url('/order/pdf/'.$item->id)}}" class="btn btn-danger mt-3 float-right">Make PDF</a>
                                                 </form>
                                                 
                                           </div>

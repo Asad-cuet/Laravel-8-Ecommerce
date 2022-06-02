@@ -17,7 +17,7 @@
 <div class="py-5">
       <div class="container">
             <div class="row">
-                  <h2>Featured Products</h2>
+                  <h4>Featured Products</h4>
                   <div class="owl-carousel featured-carousel owl-theme">
                         @foreach ($feteaured_product as $item)
                         <a href="{{url('category/'.$item->category->slug.'/'.$item->slug)}}">
@@ -42,7 +42,7 @@
 <div class="py-5">
       <div class="container">
             <div class="row">
-                  <h2>Trending Category</h2>
+                  <h4>Trending Category</h4>
                   <div class="owl-carousel category-carousel owl-theme">
                         @foreach ($trending_category as $item)
                              <a href="{{url('category/'.$item->slug)}}" >
